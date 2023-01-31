@@ -1,0 +1,24 @@
+<h2>
+    <a href="/groups/{{this.group.id}}">{{this.group.title}}</a>
+</h2>
+<p>Descrição: {{this.group.description}}<p/>
+<p>Filmes: <p/>
+{{#each this.group.movies}}
+    <a class="movieGroup" href="/movies/{{this.id}}">{{this.title}}</a>
+    <input type="button" class="deleteMovie" id="{{this.id}}" value="Delete Movie" >
+    <p></p>
+{{/each}}
+<p>Duração: {{this.group.duration}} minutos<p/>
+
+<form class="groupDetails" method="GET" action="/groups/edit/{{this.group.id}}">
+    <input type="submit" value="Edit Group">
+</form>
+
+<input type="button" value="Delete Group" id="deleteGroup">
+
+<script type="application/ecmascript" src="/js/group.js">
+</script>
+
+<script type="application/ecmascript">
+    registerDelete('{{this.token}}')
+</script>

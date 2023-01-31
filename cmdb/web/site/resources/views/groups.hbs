@@ -1,0 +1,21 @@
+<h1>GROUPS</h1>
+<form action="/groups/new">
+    <input type="submit" value="Create Group" />
+</form>
+<hr>
+
+{{#if this.obj.erro}}
+    <p>{{this.obj.erro}}<p/>
+{{else}}
+    {{#each this.obj.groups}}
+        {{> groupPartial}} 
+        <hr>
+    {{/each}}
+{{/if}}
+
+<script type="application/ecmascript" src="/js/groups.js">
+</script>
+
+<script type="application/ecmascript">
+    registerDeleteGroups('{{this.token}}')
+</script>

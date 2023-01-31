@@ -1,0 +1,12 @@
+<h2>
+    &nbsp;<a href="/movies/{{this.id}}">{{this.title}}</a>
+</h2>
+<p>&emsp;&emsp;<img src={{this.image_URL}} width="210" height="300"></p>
+<p>&emsp;&emsp;imDb Rating: {{this.imdbRating}}</p>
+<p>&emsp;&emsp;Description: {{this.description}}</p>
+<p>&emsp;&emsp;Directed by: {{this.directors}}</p>
+<p>&emsp;&emsp;Cast: {{this.actors}}</p> 
+<p>&emsp;&emsp;Movie Length: {{this.duration}} mins</p>
+<form method="POST" action="/groups/movies/{{this.id}}" class="d-flex">
+    &emsp;&emsp;<button class="btn btn-outline-success" placeholder="Add movie" type="submit">Add movie to a group</button>
+</form>

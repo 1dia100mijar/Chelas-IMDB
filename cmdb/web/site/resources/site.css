@@ -1,0 +1,21 @@
+h1 {
+    font-style: italic;
+    font-size: 35px;
+}
+
+h2{
+    font-style: italic;
+}
+
+.groupDetails{
+    display: inline-block;
+}
+
+.background{
+    width: 100%;
+    height: calc(100% - 56px);
+    object-fit: cover;
+    position: absolute;
+    top: 56px;
+    left: 0;
+}

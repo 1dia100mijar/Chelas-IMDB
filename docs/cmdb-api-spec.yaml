@@ -1,0 +1,529 @@
+openapi: 3.0.1
+info:
+  title: Chelas Movies DataBase
+  description: This is a movie database
+  contact:
+    email: A48714@alunos.isel.pt
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - description: Localhost server for testing API
+    url: http://localhost:1350/api
+
+tags:
+- name: Groups
+- name: Users
+
+paths:
+  /users:
+    post:
+      tags:
+      - Users
+      summary: adds a user
+      description: Adds a user to the system
+      operationId: addUser
+      responses:
+        201:
+          description: user created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewUser'
+                
+        401:
+          description: Unauthorized
+          content: {}
+      x-codegen-request-body-name: user
+    get:
+        tags:
+        - Users
+        summary: list all users
+        description: gets all users that currently exist in the database
+        operationId: getUsers
+        security:
+          - bearerAuth: []
+        parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+        responses:
+          200:
+            description: search results matching criteria
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/User'
+          400:
+            description: bad input parameter
+            content: 
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/InvalidRequest'  
+  /movies/top250/:
+    get:
+      tags:
+      - Movies
+      summary: Get the list of the most popular movies
+      description: Get the list of the most popular movies. The request has an optional parameter to limit the number of returned movies (max 250)
+      operationId: listMovies
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: limit
+        in: query
+        description: maximum number of movies to return
+        required: false
+        schema:
+          maximum: 250
+          minimum: 0
+          type: integer
+      responses:
+        200:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Top250Movie'
+        400:
+          description: bad input parameter
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequest'
+  /movies/search/{name}:
+    get:
+      tags:
+      - Movies
+      summary: Search movies by name
+      description: Search movies by name. The request has an optional parameter to limit the number of returned movies (max 250)
+      operationId: searchMovie
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+          format: uuid
+      - name: name
+        in: path
+        description: Name of movies to search
+        required: true
+        schema:
+          type: string
+          minimum: 1
+      - name: limit
+        in: query
+        description: maximum number of movies to return
+        required: false
+        schema:
+          maximum: 250
+          minimum: 0
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+        400:
+          description: Invalid name supplied
+          content: 
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/InvalidRequest'
+                example: Invalid name supplied
+        404:
+          description: Movies not found
+          content: 
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/InvalidRequest'
+                example: Movies Not found
+  /groups:
+    get:
+      tags:
+      - Groups
+      summary: list all groups
+      description: gets all groups that currently exist in the database
+      operationId: listGroups
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+        400:
+          description: bad input parameter
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequest'
+    post:
+      tags:
+      - Groups
+      summary: creates a group
+      description: Adds a group to the system
+      operationId: createGroup
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: group to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewGroup'
+        required: false
+      responses:
+        201:
+          description: Group created
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewGroupCreated'
+        400:
+          description: Invalid input, object invalid
+          content: {}
+      x-codegen-request-body-name: group
+  /groups/{groupId}:
+    get:
+      tags:
+      - Groups
+      summary: get Group
+      description: Get the details of a group, with its name, description, the names and total duration of the included movies
+      operationId: getGroup
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: groupId
+        in: path
+        description: pass a search integer with the Group Id for looking up a Group
+        schema:
+          type: integer
+        required: true
+      responses:
+        200:
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Group'
+        400:
+          description: bad input parameter
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequest'
+    put:
+      tags:
+      - Groups
+      summary: Edits a group
+      description: Edit group by changing its name and description
+      operationId: editGroup
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: groupId
+        in: path
+        description: Id of the group to be deleted
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: group to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewGroup'
+        required: false
+      responses:
+        201:
+          description: Group edited
+          content: {}
+        404:
+          description: Group not found
+          content: {}
+    delete:
+      tags:
+      - Groups
+      summary: Delete a group by Id
+      description: Delete a group by Id
+      operationId: deleteGroup
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: groupId
+        in: path
+        description: Id of the group to be deleted
+        required: true
+        schema:
+          type: integer
+      responses:
+        400:
+          description: Invalid group Id supplied
+          content: {}
+        404:
+          description: group not found
+          content: {}
+  /groups/movies/{groupId}:
+    post:
+      tags:
+      - Groups
+      summary: Add a movie to a group
+      description: Add a movie to a group
+      operationId: addMovie
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: groupId
+        in: path
+        description: Id of the group to add movie to
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Id of the movie to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMovie'
+        required: false
+      responses:
+        201:
+          description: Movie added
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewMovieCreated'
+        400:
+          description: Invalid input, object invalid
+          content: {}
+      x-codegen-request-body-name: group 
+    delete:
+      tags:
+      - Groups
+      summary: removes a movie from a group
+      description: removes a movie from a group
+      operationId: removeMovie
+      security:
+        - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: groupId
+        in: path
+        description: Id of the group to remove movie from
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: Id of the movie to remove
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMovie'
+        required: false
+      responses:
+        201:
+          description: Movie removed
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewMovieCreated'
+        400:
+          description: Invalid input, object invalid
+          content: {}
+      x-codegen-request-body-name: group 
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+  schemas:
+    Group:
+      required:
+      - name
+      - description
+      - movie-names
+      - total-duration
+      type: object
+      properties:
+        name:
+          type: string
+          example: Group1
+        description:
+          type: string
+          example: Movie description
+        movie-names:
+          type: array
+          example: ["Inception", "The Godfather"]
+        total-duration:
+          type: integer
+          example: 356
+    NewGroup:
+      required:
+      - title
+      - description
+      type: object
+      properties:
+        title:
+          type: string
+          example: Group1
+        description:
+          type: string
+          example: Movie description
+    Top250Movie:
+      required:
+      - id
+      - title
+      - rank
+      - imDbRating
+      type: object
+      properties:
+        id:
+          type: integer
+          example: tt0111161
+        title:
+          type: string
+          example: The Shawshank Redemption
+        rank:
+          type: integer
+          example: 1
+        imDbRating:
+          type: string
+          example: 9.2
+    Movie:
+      required:
+      - id
+      - title
+      - description
+      type: object
+      properties:
+        id:
+          type: integer
+          example: tt1375666
+        title:
+          type: string
+          example: Inception
+        description:
+          type: string
+          example: (2010)
+    NewMovie:
+      required:
+      - id
+      type: object
+      properties:
+        movieId:
+          type: integer
+          example: tt0111161
+    User:
+      required:
+      - userId
+      type: object
+      properties:
+        userName:
+          type: integer
+          example: 1
+    NewUser:
+      required:
+      - id
+      - token
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+        token:
+          type: integer
+          example: 0693435a-a222-4489-9d4f-d3b80efdd30e
+    InvalidRequest:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Missing required parameter"
+    NewGroupCreated:
+      required:
+      - status
+      - group
+      type: object
+      properties:
+        status:
+          type: string
+          example: Group with name "group1" created with success
+        group:
+          $ref: '#/components/schemas/Group'
+    NewMovieCreated:
+      required:
+      - status
+      - movie
+      type: object
+      properties:
+        status:
+          type: string
+          example: Movie with name "Inception" added with success
+        movie:
+          $ref: '#/components/schemas/Movie'

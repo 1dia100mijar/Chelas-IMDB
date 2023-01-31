@@ -1,0 +1,35 @@
+<style>
+    .form-signin {
+        padding-top: 300px;    
+    }
+</style>
+
+<body class="text-center">
+<main class="form-signin w-50 m-auto">
+  <form method="POST" action="/login" class="w-50 btn">
+
+    <h2 class="h3">Please log in</h2>
+    {{#if erro}}
+      <div class="alert alert-danger">{{erro}}</div>
+
+      <div class="form-floating">
+        <input type="username" class="form-control" name="username" value="{{username}}" placeholder="username">
+        <label for="username">Username</label>
+      </div>
+
+    {{else}}
+      <div class="form-floating">
+        <input type="username" class="form-control" name="username" placeholder="username">
+        <label for="username">Username</label>
+      </div>
+    {{/if}}
+    
+    <div class="form-floating">
+      <input type="password" class="form-control" name="password" placeholder="Password">      
+      <label for="password">Password</label>
+    </div>
+    
+    <input class="w-100 btn btn-lg btn-primary" type="submit" value="Log in"></input>
+  </form>
+</main>
+</body>

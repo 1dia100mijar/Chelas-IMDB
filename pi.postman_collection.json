@@ -1,0 +1,784 @@
+{
+	"info": {
+		"_postman_id": "dd4187f0-817e-4da3-ac75-3f4b6d88735a",
+		"name": "pi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24412963"
+	},
+	"item": [
+		{
+			"name": "API",
+			"item": [
+				{
+					"name": "createGroup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Title\",\r\n    \"description\": \"Description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1350/api/groups/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"groups",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listGroups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1350/api/groups/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"groups",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateGroup",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Title Updated\",\r\n    \"description\": \"Description Updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1350/api/groups/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"groups",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteGroup",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1350/api/groups/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"groups",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listGroup",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1350/api/groups/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"groups",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTop250",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1350/api/movies/top250/?limit=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"movies",
+								"top250",
+								""
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchMovies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1350/api/movies/search/:name?limit=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"movies",
+								"search",
+								":name"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							],
+							"variable": [
+								{
+									"key": "name",
+									"value": "Inception 2010"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addMovie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movieId\": \"tt0110413\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1350/api/groups/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"groups",
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeMovie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movieId\": \"tt0110413\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1350/api/groups/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"groups",
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1350/api/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1350/api/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMovieDetails",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movieId\": \"tt0110413\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1350/api/movies/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1350",
+							"path": [
+								"api",
+								"movies",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "3e5ea6df-26e4-4f59-bf78-23ccd1714b92",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ElasticSearch",
+			"item": [
+				{
+					"name": "Groups",
+					"item": [
+						{
+							"name": "Criar groups e groupIdx",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"groupIdx\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/groups/_doc/groupIdx",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"groups",
+										"_doc",
+										"groupIdx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete groups",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9200/groups",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"groups"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get Groups",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9200/groups/_doc/0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"groups",
+										"_doc",
+										"0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get groupsIdx",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9200/groups/_doc/groupIdx",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"groups",
+										"_doc",
+										"groupIdx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update groupIdx",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"groupIdx\": 30\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/groups/_doc/groupIdx",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"groups",
+										"_doc",
+										"groupIdx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a group",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 50,\r\n    \"userId\": 0,\r\n    \"title\": \"title\",\r\n    \"description\": \"description\",\r\n    \"movies\": []\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/groups/_doc/50",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"groups",
+										"_doc",
+										"50"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a group",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"doc\":{\r\n        \"title\": \"titleUpdated\",\r\n        \"description\": \"descriptionUpdated\",\r\n        \"movies\": [\"newMovie\"]\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/groups/_update/50",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"groups",
+										"_update",
+										"50"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Procurar grupos de um user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9200/groups/_search?q=userId:0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"groups",
+										"_search"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "userId:0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Criar indice users e doc userIdx",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userIdx\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/users/_doc/userIdx",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"users",
+										"_doc",
+										"userIdx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete users",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9200/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9200/users/_search",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"users",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get Users with Token",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9200/users/_search?q=token:362a8a76-d162-4680-99e1-03d867ab0656",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"users",
+										"_search"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "token:362a8a76-d162-4680-99e1-03d867ab0656"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get userIdx",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9200/users/_doc/userIdx",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"users",
+										"_doc",
+										"userIdx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "atualizar userIdx",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userIdx\": 30\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/users/_doc/userIdx",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"users",
+										"_doc",
+										"userIdx"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Query login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"query\": {\r\n        \"bool\": {\r\n            \"must\": [\r\n                { \"term\": { \"username\": \"a\" } },\r\n                { \"term\": { \"password\": \"a\" } }\r\n            ]\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/users/_search",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"users",
+										"_search"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

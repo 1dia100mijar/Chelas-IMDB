@@ -1,0 +1,8 @@
+
+{{#each groups}}
+    {{> addMoviePartial}} 
+    <form method="POST" action="/groups/movies/{{../movieId}}/{{this.id}}" class="d-flex">
+        &emsp;&emsp;<button class="btn btn-outline-success" placeholder="Add movie" type="submit">Add movie to this group</button>
+    </form>
+    <hr>   
+{{/each}} 

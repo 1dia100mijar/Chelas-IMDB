@@ -1,0 +1,17 @@
+<p>
+    <label for="title">Group Title:</label> 
+    <input type="text" name="title" id="title" value="{{this.group.title}}">
+</p>
+<p>
+    <label for="description">Group Description:</label>
+    <textarea name="description" id="description" rows="4" cols="50">{{this.group.description}}</textarea>
+</p>
+
+<input type="button" value="Edit Group" id="updateGroup">
+
+<script type="application/ecmascript" src="/js/editGroup.js">
+</script>
+
+<script type="application/ecmascript">
+    registerDelete('{{this.token}}', '{{this.group.id}}')
+</script>
